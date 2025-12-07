@@ -17,6 +17,7 @@
             background: #0a0a0a;
             color: #e5e5e5;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .dark { background: #0a0a0a; color: #e5e5e5; }
@@ -26,6 +27,7 @@
         .text-muted-foreground { color: #888; }
         .bg-input { background: #222; }
         .text-primary { color: #659EB9; }
+        .text-foreground { color: #e5e5e5; }
 
         /* Magic Text Animation */
         .magic { display: inline-block; position: relative; }
@@ -47,25 +49,28 @@
 
         /* Avatar Styles */
         .author-avatar {
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             object-fit: cover;
-            box-shadow: 0 0 30px rgba(101, 158, 185, 0.3);
+            box-shadow: 0 0 40px rgba(101, 158, 185, 0.4);
+            border: 3px solid #2a2a2a;
         }
 
         .crown3 {
             position: absolute;
-            top: -30px;
+            top: -35px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 70px;
             height: auto;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
         }
 
         .blue-tick {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             display: inline-block;
+            vertical-align: middle;
         }
 
         /* Responsive Grid */
@@ -86,27 +91,39 @@
             background: #1a1a1a;
             border: 1px solid #2a2a2a;
             border-radius: 1rem;
-            padding: 1.5rem;
-            transition: all 0.3s;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
             cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .project-card:hover {
             border-color: #659EB9;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(101, 158, 185, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(101, 158, 185, 0.25);
+            background: #1f1f1f;
         }
 
         .project-icon {
-            width: 48px;
-            height: 48px;
-            background: #2a2a2a;
-            border-radius: 0.5rem;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border-radius: 0.75rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 1rem;
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover .project-icon {
+            background: linear-gradient(135deg, #659EB9 0%, #4a7a94 100%);
+            border-color: #659EB9;
+            transform: scale(1.1) rotate(5deg);
         }
 
         /* Header Sticky */
@@ -128,33 +145,50 @@
         .payment-card {
             background: #1a1a1a;
             border: 1px solid #2a2a2a;
-            border-radius: 0.75rem;
-            padding: 1rem;
+            border-radius: 1rem;
+            padding: 1.25rem;
             transition: all 0.3s;
         }
 
         .payment-card:hover {
             background: #222;
             border-color: #659EB9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(101, 158, 185, 0.15);
+        }
+
+        .payment-card img {
+            transition: transform 0.3s;
+        }
+
+        .payment-card:hover img {
+            transform: scale(1.1);
         }
 
         /* Image Gallery */
         .gallery-item {
             position: relative;
             overflow: hidden;
-            border-radius: 1rem;
+            border-radius: 1.25rem;
             aspect-ratio: 16/9;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            border-color: #659EB9;
+            box-shadow: 0 8px 24px rgba(101, 158, 185, 0.2);
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s;
+            transition: transform 0.5s ease;
         }
 
         .gallery-item:hover img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         /* Skills Pills */
@@ -213,11 +247,25 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .author-avatar { width: 110px; height: 110px; }
+            .crown3 { width: 55px; top: -28px; }
+            .blue-tick { width: 22px; height: 22px; }
+            h1 { font-size: 1.5rem !important; }
+            h2 { font-size: 1.5rem !important; }
+            .project-grid { gap: 0.875rem; }
+            .project-card { padding: 1rem; }
+            .project-icon { width: 48px; height: 48px; font-size: 24px; }
+            #scroll-to-top { width: 44px; height: 44px; right: 1rem; bottom: 2rem; }
+            .social-links img { width: 28px; height: 28px; }
+            .payment-card { padding: 1rem; }
+        }
+
+        @media (max-width: 480px) {
             .author-avatar { width: 100px; height: 100px; }
             .crown3 { width: 50px; top: -25px; }
-            h1 { font-size: 1.5rem !important; }
-            .project-grid { gap: 0.75rem; }
-            #scroll-to-top { width: 40px; height: 40px; right: 1rem; bottom: 2rem; }
+            h1 { font-size: 1.35rem !important; }
+            h2 { font-size: 1.35rem !important; }
+            main { padding-left: 1rem !important; padding-right: 1rem !important; }
         }
 
         /* Status Indicator */
@@ -255,14 +303,56 @@
         .copy-btn {
             cursor: pointer;
             transition: all 0.2s;
+            opacity: 0.6;
         }
 
         .copy-btn:hover {
             color: #659EB9;
+            opacity: 1;
+            transform: scale(1.2);
         }
 
         .copy-btn:active {
             transform: scale(0.9);
+        }
+
+        /* Section Spacing */
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        /* Smooth Animations */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Download Button Hover */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #659EB9;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover .download-btn {
+            gap: 0.75rem;
+            color: #fff;
+        }
+
+        .download-btn i {
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover .download-btn i {
+            transform: translateY(2px);
         }
     </style>
 </head>
@@ -349,49 +439,49 @@
             <section class="mb-16">
                 <h2 class="text-2xl font-bold mb-6">Mã Nguồn Free</h2>
                 <div class="project-grid">
-                    <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="project-card">
+                    <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="project-card fade-in">
                         <div class="project-icon">
                             <i class="ri-code-s-slash-line text-primary"></i>
                         </div>
                         <h3 class="text-lg font-semibold mb-2">Web Template #1</h3>
                         <p class="text-sm text-muted-foreground mb-4">Template website hiện đại với animation đẹp mắt</p>
-                        <div class="flex items-center gap-2 text-sm text-primary">
+                        <div class="download-btn">
                             <span>Tải xuống</span>
                             <i class="ri-download-2-line"></i>
                         </div>
                     </a>
 
-                    <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="project-card">
+                    <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="project-card fade-in" style="animation-delay: 0.1s">
                         <div class="project-icon">
                             <i class="ri-reactjs-line text-primary"></i>
                         </div>
                         <h3 class="text-lg font-semibold mb-2">React Dashboard</h3>
                         <p class="text-sm text-muted-foreground mb-4">Dashboard admin panel với React & Tailwind</p>
-                        <div class="flex items-center gap-2 text-sm text-primary">
+                        <div class="download-btn">
                             <span>Tải xuống</span>
                             <i class="ri-download-2-line"></i>
                         </div>
                     </a>
 
-                    <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="project-card">
+                    <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="project-card fade-in" style="animation-delay: 0.2s">
                         <div class="project-icon">
                             <i class="ri-shopping-cart-line text-primary"></i>
                         </div>
                         <h3 class="text-lg font-semibold mb-2">E-commerce Theme</h3>
                         <p class="text-sm text-muted-foreground mb-4">Template shop online responsive hoàn chỉnh</p>
-                        <div class="flex items-center gap-2 text-sm text-primary">
+                        <div class="download-btn">
                             <span>Tải xuống</span>
                             <i class="ri-download-2-line"></i>
                         </div>
                     </a>
 
-                    <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="project-card">
+                    <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="project-card fade-in" style="animation-delay: 0.3s">
                         <div class="project-icon">
                             <i class="ri-profile-line text-primary"></i>
                         </div>
                         <h3 class="text-lg font-semibold mb-2">Portfolio Template</h3>
                         <p class="text-sm text-muted-foreground mb-4">Template portfolio cá nhân chuyên nghiệp</p>
-                        <div class="flex items-center gap-2 text-sm text-primary">
+                        <div class="download-btn">
                             <span>Tải xuống</span>
                             <i class="ri-download-2-line"></i>
                         </div>
@@ -563,12 +653,50 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Copy Function
+        // Copy Function with better feedback
         function copyText(text) {
             navigator.clipboard.writeText(text).then(() => {
-                alert('Đã sao chép: ' + text);
+                // Create toast notification
+                const toast = document.createElement('div');
+                toast.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #659EB9;
+                    color: white;
+                    padding: 12px 24px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                    z-index: 9999;
+                    animation: slideIn 0.3s ease;
+                    font-size: 14px;
+                    font-weight: 500;
+                `;
+                toast.textContent = `✓ Đã sao chép: ${text}`;
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => toast.remove(), 300);
+                }, 2000);
+            }).catch(err => {
+                alert('Không thể sao chép: ' + err);
             });
         }
+
+        // Add animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
 
         // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
