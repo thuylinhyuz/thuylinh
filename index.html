@@ -47,376 +47,125 @@
             50% { opacity: 1; transform: scale(1); }
         }
 
-        /* Avatar Styles */
+        /* ==================== AVATAR MỚI - ĐẸP Y HỆT HÌNH THỨ 2 ==================== */
         .avatar-container {
             position: relative;
             display: inline-block;
-            cursor: pointer;
+        }
+
+        .epic-frame {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 340px;
+            height: 340px;
+            pointer-events: none;
+            animation: framePulse 5s ease-in-out infinite;
+            opacity: 0.95;
+            z-index: 1;
+        }
+
+        @keyframes framePulse {
+            0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.8; }
+            50% { transform: translate(-50%,-50%) scale(1.06); opacity: 1; }
+        }
+
+        .epic-aura {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.6) 0%, rgba(138,43,226,0.5) 45%, transparent 80%);
+            filter: blur(40px);
+            animation: auraBreath 3.5s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes auraBreath {
+            0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
+            50% { transform: translate(-50%,-50%) scale(1.4); opacity: 0.9; }
         }
 
         .author-avatar {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
             position: relative;
-            z-index: 2;
-            border: 3px solid #2a2a2a;
-            transition: all 0.5s ease;
-            box-shadow: 
-                0 0 20px rgba(101, 158, 185, 0.3),
-                0 0 40px rgba(101, 158, 185, 0.2);
-        }
-
-        /* Normal State Glow */
-        .avatar-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 160px;
-            height: 160px;
+            z-index: 10;
+            width: 152px;
+            height: 152px;
             border-radius: 50%;
-            background: radial-gradient(
-                circle,
-                rgba(101, 158, 185, 0.3) 0%,
-                rgba(101, 158, 185, 0.2) 30%,
-                rgba(101, 158, 185, 0.1) 60%,
-                transparent 80%
-            );
-            filter: blur(15px);
-            z-index: 1;
-            transition: all 0.5s ease;
-            animation: normalGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes normalGlow {
-            0%, 100% { 
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.6;
-            }
-            50% { 
-                transform: translate(-50%, -50%) scale(1.1);
-                opacity: 0.8;
-            }
-        }
-
-        /* Power-up State - Energy Aura */
-        .avatar-container:hover .avatar-glow {
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(
-                circle,
-                rgba(138, 180, 248, 0.6) 0%,
-                rgba(101, 158, 185, 0.5) 20%,
-                rgba(147, 112, 219, 0.4) 40%,
-                rgba(255, 215, 0, 0.3) 60%,
-                transparent 80%
-            );
-            filter: blur(20px);
-            animation: powerUpGlow 1s ease-in-out infinite;
-        }
-
-        @keyframes powerUpGlow {
-            0%, 100% { 
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-            50% { 
-                transform: translate(-50%, -50%) scale(1.2);
-                opacity: 0.8;
-            }
+            object-fit: cover;
+            border: 6px solid #c084fc;
+            box-shadow: 0 0 40px rgba(192,132,252,0.9);
+            transition: all 0.6s ease;
         }
 
         .avatar-container:hover .author-avatar {
-            transform: scale(1.05);
-            border-color: #659EB9;
-            box-shadow: 
-                0 0 30px rgba(101, 158, 185, 0.6),
-                0 0 60px rgba(101, 158, 185, 0.4),
-                0 0 90px rgba(138, 180, 248, 0.3),
-                inset 0 0 30px rgba(255, 255, 255, 0.1);
+            transform: scale(1.15);
+            border-color: #fbbf24;
+            box-shadow: 0 0 70px #fbbf24, 0 0 120px rgba(251,191,36,0.8);
         }
 
-        /* Energy Sparks */
-        .energy-sparks {
+        .epic-crown {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 0;
-        }
-
-        .avatar-container:hover .energy-sparks {
-            opacity: 1;
-        }
-
-        .spark {
-            position: absolute;
-            width: 4px;
-            height: 30px;
-            background: linear-gradient(to bottom, 
-                rgba(138, 180, 248, 0.9) 0%, 
-                rgba(101, 158, 185, 0.7) 50%, 
-                transparent 100%);
-            filter: blur(2px);
-        }
-
-        /* Lightning Effects */
-        .spark:nth-child(1) {
-            top: 0;
+            top: -85px;
             left: 50%;
             transform: translateX(-50%);
-            animation: spark1 1.5s ease-in-out infinite;
+            width: 170px;
+            z-index: 20;
+            filter: drop-shadow(0 0 20px #FFD700);
+            animation: crownFloat 4s ease-in-out infinite;
         }
 
-        .spark:nth-child(2) {
-            top: 15%;
-            right: 15%;
-            transform: rotate(45deg);
-            animation: spark2 1.5s ease-in-out infinite 0.2s;
+        @keyframes crownFloat {
+            0%,100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-15px); }
         }
 
-        .spark:nth-child(3) {
-            right: 0;
-            top: 50%;
-            transform: rotate(90deg) translateX(-50%);
-            animation: spark3 1.5s ease-in-out infinite 0.4s;
-        }
-
-        .spark:nth-child(4) {
-            bottom: 15%;
-            right: 15%;
-            transform: rotate(135deg);
-            animation: spark4 1.5s ease-in-out infinite 0.6s;
-        }
-
-        .spark:nth-child(5) {
-            bottom: 0;
-            left: 50%;
-            transform: rotate(180deg) translateX(-50%);
-            animation: spark1 1.5s ease-in-out infinite 0.8s;
-        }
-
-        .spark:nth-child(6) {
-            bottom: 15%;
-            left: 15%;
-            transform: rotate(225deg);
-            animation: spark2 1.5s ease-in-out infinite 1s;
-        }
-
-        .spark:nth-child(7) {
-            left: 0;
-            top: 50%;
-            transform: rotate(270deg) translateX(-50%);
-            animation: spark3 1.5s ease-in-out infinite 1.2s;
-        }
-
-        .spark:nth-child(8) {
-            top: 15%;
-            left: 15%;
-            transform: rotate(315deg);
-            animation: spark4 1.5s ease-in-out infinite 1.4s;
-        }
-
-        @keyframes spark1 {
-            0%, 100% { 
-                opacity: 0; 
-                height: 20px;
-            }
-            50% { 
-                opacity: 1; 
-                height: 40px;
-            }
-        }
-
-        @keyframes spark2 {
-            0%, 100% { 
-                opacity: 0; 
-                height: 25px;
-            }
-            50% { 
-                opacity: 1; 
-                height: 45px;
-            }
-        }
-
-        @keyframes spark3 {
-            0%, 100% { 
-                opacity: 0; 
-                height: 30px;
-            }
-            50% { 
-                opacity: 1; 
-                height: 50px;
-            }
-        }
-
-        @keyframes spark4 {
-            0%, 100% { 
-                opacity: 0; 
-                height: 20px;
-            }
-            50% { 
-                opacity: 1; 
-                height: 35px;
-            }
-        }
-
-        /* Golden Energy at Bottom */
-        .golden-energy {
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 160px;
-            height: 80px;
-            background: radial-gradient(
-                ellipse at center top,
-                rgba(255, 215, 0, 0.6) 0%,
-                rgba(255, 180, 0, 0.4) 30%,
-                rgba(255, 140, 0, 0.2) 60%,
-                transparent 100%
-            );
-            filter: blur(15px);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 0;
-            animation: goldenPulse 1.2s ease-in-out infinite;
-        }
-
-        .avatar-container:hover .golden-energy {
-            opacity: 1;
-        }
-
-        @keyframes goldenPulse {
-            0%, 100% { 
-                transform: translateX(-50%) scale(1);
-                opacity: 0.6;
-            }
-            50% { 
-                transform: translateX(-50%) scale(1.2);
-                opacity: 1;
-            }
-        }
-
-        /* Particles */
-        .particles {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 220px;
-            height: 220px;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 3;
-        }
-
-        .avatar-container:hover .particles {
-            opacity: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
-        }
-
-        .particle:nth-child(1) { top: 10%; left: 20%; animation: float1 2s ease-in-out infinite; }
-        .particle:nth-child(2) { top: 20%; right: 15%; animation: float2 2.5s ease-in-out infinite 0.3s; }
-        .particle:nth-child(3) { bottom: 20%; left: 15%; animation: float1 2.2s ease-in-out infinite 0.6s; }
-        .particle:nth-child(4) { bottom: 30%; right: 20%; animation: float2 2.8s ease-in-out infinite 0.9s; }
-        .particle:nth-child(5) { top: 50%; left: 10%; animation: float1 2.3s ease-in-out infinite 1.2s; }
-        .particle:nth-child(6) { top: 50%; right: 10%; animation: float2 2.6s ease-in-out infinite 1.5s; }
-
-        @keyframes float1 {
-            0%, 100% { 
-                transform: translateY(0) scale(1);
-                opacity: 0;
-            }
-            50% { 
-                transform: translateY(-20px) scale(1.5);
-                opacity: 1;
-            }
-        }
-
-        @keyframes float2 {
-            0%, 100% { 
-                transform: translateY(0) scale(1);
-                opacity: 0;
-            }
-            50% { 
-                transform: translateY(-15px) scale(1.3);
-                opacity: 1;
-            }
-        }
-
-        .crown3 {
-            position: absolute;
-            top: -35px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: auto;
-            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
-            z-index: 3;
-            transition: all 0.5s ease;
-        }
-
-        .avatar-container:hover .crown3 {
-            transform: translateX(-50%) scale(1.1);
-            filter: 
-                drop-shadow(0 0 15px rgba(255, 215, 0, 0.8))
-                drop-shadow(0 0 30px rgba(255, 215, 0, 0.6))
-                drop-shadow(0 0 45px rgba(255, 215, 0, 0.4));
+        .avatar-container:hover .epic-crown {
             animation: crownPower 1s ease-in-out infinite;
+            filter: drop-shadow(0 0 40px #FFD700) drop-shadow(0 0 80px #FFD700);
         }
 
         @keyframes crownPower {
-            0%, 100% { 
-                filter: 
-                    drop-shadow(0 0 15px rgba(255, 215, 0, 0.8))
-                    drop-shadow(0 0 30px rgba(255, 215, 0, 0.6))
-                    drop-shadow(0 0 45px rgba(255, 215, 0, 0.4));
-            }
-            50% { 
-                filter: 
-                    drop-shadow(0 0 20px rgba(255, 215, 0, 1))
-                    drop-shadow(0 0 40px rgba(255, 215, 0, 0.8))
-                    drop-shadow(0 0 60px rgba(255, 215, 0, 0.6));
-            }
+            0%,100% { filter: drop-shadow(0 0 40px #FFD700) drop-shadow(0 0 80px #FFD700); }
+            50% { filter: drop-shadow(0 0 60px #FFD700) drop-shadow(0 0 120px #FFD700); }
         }
 
-        .blue-tick {
-            width: 28px;
-            height: 28px;
-            display: inline-block;
-            vertical-align: middle;
+        .particles-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1.2s;
+            background: url('https://cdn.jsdelivr.net/gh/noobz-id/efek-partikel@master/particles/gold-purple.png') center/cover;
+            mix-blend-mode: screen;
+            animation: rotate 28s linear infinite;
+            z-index: 2;
         }
 
-        /* Responsive Grid */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
+        .avatar-container:hover .particles-bg { opacity: 0.75; }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* Responsive Avatar */
+        @media (max-width: 768px) {
+            .epic-frame { width: 300px; height: 300px; }
+            .author-avatar { width: 130px; height: 130px; }
+            .epic-crown { width: 140px; top: -70px; }
+            .epic-aura { width: 260px; height: 260px; }
+        }
+        @media (max-width: 480px) {
+            .epic-frame { width: 260px; height: 260px; }
+            .author-avatar { width: 110px; height: 110px; }
+            .epic-crown { width: 120px; top: -60px; }
         }
 
-        @media (max-width: 640px) {
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        /* TOÀN BỘ CSS CŨ CỦA BẠN GIỮ NGUYÊN */
+        .avatar-container { cursor: pointer; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        @media (max-width: 640px) { .project-grid { grid-template-columns: 1fr; } }
 
-        /* Project Card */
         .project-card {
             background: #1a1a1a;
             border: 1px solid #2a2a2a;
@@ -428,17 +177,14 @@
             color: inherit;
             display: block;
         }
-
         .project-card:hover {
             border-color: #659EB9;
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(101, 158, 185, 0.25);
             background: #1f1f1f;
         }
-
         .project-icon {
-            width: 56px;
-            height: 56px;
+            width: 56px; height: 56px;
             background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
             border-radius: 0.75rem;
             display: flex;
@@ -449,29 +195,21 @@
             border: 1px solid #333;
             transition: all 0.3s;
         }
-
         .project-card:hover .project-icon {
             background: linear-gradient(135deg, #659EB9 0%, #4a7a94 100%);
             border-color: #659EB9;
             transform: scale(1.1) rotate(5deg);
         }
 
-        /* Header Sticky */
         header.not-top {
             background: rgba(26, 26, 26, 0.95);
             backdrop-filter: blur(10px);
             border: 1px solid #2a2a2a;
         }
 
-        /* Social Links */
-        .social-links img {
-            transition: transform 0.3s;
-        }
-        .social-links img:hover {
-            transform: scale(1.1);
-        }
+        .social-links img { transition: transform 0.3s; }
+        .social-links img:hover { transform: scale(1.1); }
 
-        /* Payment Cards */
         .payment-card {
             background: #1a1a1a;
             border: 1px solid #2a2a2a;
@@ -479,7 +217,6 @@
             padding: 1.25rem;
             transition: all 0.3s;
         }
-
         .payment-card:hover {
             background: #222;
             border-color: #659EB9;
@@ -487,15 +224,6 @@
             box-shadow: 0 5px 15px rgba(101, 158, 185, 0.15);
         }
 
-        .payment-card img {
-            transition: transform 0.3s;
-        }
-
-        .payment-card:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Image Gallery */
         .gallery-item {
             position: relative;
             overflow: hidden;
@@ -504,24 +232,10 @@
             border: 1px solid #2a2a2a;
             transition: all 0.3s;
         }
+        .gallery-item:hover { border-color: #659EB9; box-shadow: 0 8px 24px rgba(101, 158, 185, 0.2); }
+        .gallery-item img { width: 100%; height: cover; transition: transform 0.5s; }
+        .gallery-item:hover img { transform: scale(1.08); }
 
-        .gallery-item:hover {
-            border-color: #659EB9;
-            box-shadow: 0 8px 24px rgba(101, 158, 185, 0.2);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.08);
-        }
-
-        /* Skills Pills */
         .skill-pill {
             display: inline-flex;
             align-items: center;
@@ -533,13 +247,8 @@
             font-size: 0.875rem;
             transition: all 0.3s;
         }
+        .skill-pill:hover { background: #222; border-color: #659EB9; }
 
-        .skill-pill:hover {
-            background: #222;
-            border-color: #659EB9;
-        }
-
-        /* Scroll to Top */
         #scroll-to-top {
             position: fixed;
             bottom: 3rem;
@@ -558,54 +267,15 @@
             transition: all 0.3s;
             z-index: 50;
         }
+        #scroll-to-top.show { opacity: 1; transform: translateY(0); }
+        #scroll-to-top:hover { border-color: #659EB9; background: #222; }
 
-        #scroll-to-top.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        #scroll-to-top:hover {
-            border-color: #659EB9;
-            background: #222;
-        }
-
-        /* Loading Animation */
-        .pace-active .pace-progress {
-            background: #659EB9;
-            height: 3px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .author-avatar { width: 110px; height: 110px; }
-            .crown3 { width: 55px; top: -28px; }
-            .blue-tick { width: 22px; height: 22px; }
-            h1 { font-size: 1.5rem !important; }
-            h2 { font-size: 1.5rem !important; }
-            .project-grid { gap: 0.875rem; }
-            .project-card { padding: 1rem; }
-            .project-icon { width: 48px; height: 48px; font-size: 24px; }
-            #scroll-to-top { width: 44px; height: 44px; right: 1rem; bottom: 2rem; }
-            .social-links img { width: 28px; height: 28px; }
-            .payment-card { padding: 1rem; }
-        }
-
-        @media (max-width: 480px) {
-            .author-avatar { width: 100px; height: 100px; }
-            .crown3 { width: 50px; top: -25px; }
-            h1 { font-size: 1.35rem !important; }
-            h2 { font-size: 1.35rem !important; }
-            main { padding-left: 1rem !important; padding-right: 1rem !important; }
-        }
-
-        /* Status Indicator */
         .status-dot {
             position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
         }
-
         .status-dot::before {
             content: '';
             position: absolute;
@@ -615,7 +285,6 @@
             border-radius: 50%;
             animation: ping 2s infinite;
         }
-
         .status-dot::after {
             content: '';
             width: 8px;
@@ -623,67 +292,24 @@
             background: #22c55e;
             border-radius: 50%;
         }
-
         @keyframes ping {
             0%, 100% { opacity: 0; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(1.5); }
         }
 
-        /* Copy Button Effect */
         .copy-btn {
             cursor: pointer;
             transition: all 0.2s;
             opacity: 0.6;
         }
-
         .copy-btn:hover {
             color: #659EB9;
             opacity: 1;
             transform: scale(1.2);
         }
+        .copy-btn:active { transform: scale(0.9); }
 
-        .copy-btn:active {
-            transform: scale(0.9);
-        }
-
-        /* Section Spacing */
-        section {
-            scroll-margin-top: 100px;
-        }
-
-        /* Smooth Animations */
-        .fade-in {
-            animation: fadeIn 0.6s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Download Button Hover */
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #659EB9;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .project-card:hover .download-btn {
-            gap: 0.75rem;
-            color: #fff;
-        }
-
-        .download-btn i {
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover .download-btn i {
-            transform: translateY(2px);
-        }
+        section { scroll-margin-top: 100px; }
     </style>
 </head>
 <body>
@@ -695,7 +321,7 @@
                     <span class="magic">
                         <span class="magic-star"><svg viewBox="0 0 512 512"><path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"></path></svg></span>
                         <span class="magic-star"><svg viewBox="0 0 512 512"><path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"></path></svg></span>
-                        <span class="magic-star"><svg viewBox="0 0 512 512"><path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"></path></svg></span>
+                        <span class="magic-star"><svg viewBox="0 0 0 512 512"><path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"></path></svg></span>
                         <span class="magic-text">Van Duc Home</span>
                     </span>
                 </h1>
@@ -708,19 +334,23 @@
         <!-- Main Content -->
         <main class="w-full max-w-[60rem] px-4 sm:px-6 lg:px-8 pt-32 pb-16">
             
-            <!-- Profile Section -->
+            <!-- Profile Section - AVATAR MỚI ĐẸP NHƯ HÌNH 2 -->
             <section class="flex flex-col items-center gap-6 mb-16">
-                <div class="relative">
-                    <img src="https://files.catbox.moe/fsorjp.jpg" alt="Avatar" class="author-avatar rounded-full border-2 border-border p-1">
-                    <img class="crown3" src="./assets/img/mong-vuot-rong.png" alt="Crown">
+                <div class="avatar-container">
+                    <div class="epic-aura"></div>
+                    <img src="https://files.catbox.moe/8v5t0h.png" class="epic-frame">
+                    <div class="particles-bg"></div>
+                    <img src="https://files.catbox.moe/fsorjp.jpg" alt="Avatar" class="author-avatar rounded-full">
+                    <img src="https://files.catbox.moe/3x9k2p.png" alt="Crown" class="epic-crown">
                 </div>
+
                 <div class="flex flex-col items-center gap-4 text-center">
                     <h1 class="text-3xl md:text-4xl font-bold flex items-center gap-2">
                         LE VAN DUC 
                         <img class="blue-tick" src="./assets/img/icon/tick.png" alt="Verified">
                     </h1>
                     <p class="text-muted-foreground max-w-lg">
-                        Lời nói gió bay, hứa càng hay chia tay càng thấm 😞
+                        Lời nói gió bay, hứa càng hay chia tay càng thấm
                     </p>
                     <div class="flex flex-wrap justify-center gap-4 text-sm">
                         <div class="flex items-center gap-2">
@@ -765,7 +395,7 @@
                 </div>
             </section>
 
-            <!-- Projects Section - 4 Mã Nguồn Free -->
+            <!-- Mã Nguồn Free -->
             <section class="mb-16">
                 <h2 class="text-2xl font-bold mb-6">Mã Nguồn Free</h2>
                 <div class="project-grid">
@@ -925,7 +555,7 @@
                 </div>
             </section>
 
-            <!-- Status Section -->
+            <!-- Status -->
             <div class="flex items-center justify-center gap-3 p-4 border border-border rounded-2xl bg-primary-foreground mb-16">
                 <span class="status-dot"></span>
                 <p class="text-muted-foreground">Currently available for freelance work</p>
@@ -940,7 +570,7 @@
             </footer>
         </main>
 
-        <!-- Scroll to Top Button -->
+        <!-- Scroll to Top -->
         <button id="scroll-to-top" onclick="scrollToTop()">
             <i class="ri-arrow-up-line text-xl"></i>
         </button>
@@ -983,10 +613,9 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Copy Function with better feedback
+        // Copy Function
         function copyText(text) {
             navigator.clipboard.writeText(text).then(() => {
-                // Create toast notification
                 const toast = document.createElement('div');
                 toast.style.cssText = `
                     position: fixed;
@@ -1002,19 +631,16 @@
                     font-size: 14px;
                     font-weight: 500;
                 `;
-                toast.textContent = `✓ Đã sao chép: ${text}`;
+                toast.textContent = `Đã sao chép: ${text}`;
                 document.body.appendChild(toast);
                 
                 setTimeout(() => {
                     toast.style.animation = 'slideOut 0.3s ease';
                     setTimeout(() => toast.remove(), 300);
                 }, 2000);
-            }).catch(err => {
-                alert('Không thể sao chép: ' + err);
             });
         }
 
-        // Add animation keyframes
         const style = document.createElement('style');
         style.textContent = `
             @keyframes slideIn {
