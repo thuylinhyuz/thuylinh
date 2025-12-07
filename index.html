@@ -60,6 +60,11 @@
             position: relative;
             z-index: 2;
             border: 3px solid #2a2a2a;
+            box-shadow: 
+                0 0 20px rgba(101, 158, 185, 0.3),
+                0 0 40px rgba(101, 158, 185, 0.2),
+                0 0 60px rgba(101, 158, 185, 0.1),
+                inset 0 0 20px rgba(101, 158, 185, 0.1);
         }
 
         .avatar-glow {
@@ -67,18 +72,61 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(101, 158, 185, 0.4) 0%, rgba(101, 158, 185, 0.1) 50%, transparent 70%);
-            filter: blur(15px);
+            background: radial-gradient(
+                circle,
+                rgba(101, 158, 185, 0.4) 0%,
+                rgba(101, 158, 185, 0.3) 30%,
+                rgba(101, 158, 185, 0.1) 60%,
+                transparent 80%
+            );
+            filter: blur(20px);
             z-index: 1;
-            animation: pulse 3s ease-in-out infinite;
+            animation: avatarGlow 3s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
-            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        .avatar-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(138, 180, 248, 0.2) 0%,
+                rgba(101, 158, 185, 0.15) 40%,
+                transparent 70%
+            );
+            filter: blur(25px);
+            animation: avatarGlowOuter 4s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes avatarGlow {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.15);
+                opacity: 1;
+            }
+        }
+
+        @keyframes avatarGlowOuter {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0.9;
+            }
         }
 
         .crown3 {
@@ -88,8 +136,27 @@
             transform: translateX(-50%);
             width: 70px;
             height: auto;
-            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+            filter: 
+                drop-shadow(0 0 10px rgba(255, 215, 0, 0.5))
+                drop-shadow(0 0 20px rgba(255, 215, 0, 0.3))
+                drop-shadow(0 0 30px rgba(255, 215, 0, 0.2));
             z-index: 3;
+            animation: crownGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes crownGlow {
+            0%, 100% { 
+                filter: 
+                    drop-shadow(0 0 10px rgba(255, 215, 0, 0.5))
+                    drop-shadow(0 0 20px rgba(255, 215, 0, 0.3))
+                    drop-shadow(0 0 30px rgba(255, 215, 0, 0.2));
+            }
+            50% { 
+                filter: 
+                    drop-shadow(0 0 15px rgba(255, 215, 0, 0.7))
+                    drop-shadow(0 0 30px rgba(255, 215, 0, 0.5))
+                    drop-shadow(0 0 45px rgba(255, 215, 0, 0.3));
+            }
         }
 
         .blue-tick {
@@ -274,7 +341,6 @@
         /* Responsive */
         @media (max-width: 768px) {
             .author-avatar { width: 110px; height: 110px; }
-            .avatar-glow { width: 110px; height: 110px; }
             .crown3 { width: 55px; top: -28px; }
             .blue-tick { width: 22px; height: 22px; }
             h1 { font-size: 1.5rem !important; }
@@ -289,7 +355,6 @@
 
         @media (max-width: 480px) {
             .author-avatar { width: 100px; height: 100px; }
-            .avatar-glow { width: 100px; height: 100px; }
             .crown3 { width: 50px; top: -25px; }
             h1 { font-size: 1.35rem !important; }
             h2 { font-size: 1.35rem !important; }
@@ -408,9 +473,8 @@
             
             <!-- Profile Section -->
             <section class="flex flex-col items-center gap-6 mb-16">
-                <div class="avatar-container">
-                    <div class="avatar-glow"></div>
-                    <img src="https://files.catbox.moe/fsorjp.jpg" alt="Avatar" class="author-avatar rounded-full">
+                <div class="relative">
+                    <img src="https://files.catbox.moe/fsorjp.jpg" alt="Avatar" class="author-avatar rounded-full border-2 border-border p-1">
                     <img class="crown3" src="./assets/img/mong-vuot-rong.png" alt="Crown">
                 </div>
                 <div class="flex flex-col items-center gap-4 text-center">
